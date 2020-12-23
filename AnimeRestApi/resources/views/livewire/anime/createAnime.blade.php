@@ -25,6 +25,12 @@
         </div>
 
         <div class="input-group">
+            Anime Duration
+            {{-- name model Livewire--}}
+            <input wire:model="duration" type="text" class="form-control input-sm">
+        </div>
+
+        <div class="input-group">
             Anime Release Date
             {{-- name model Livewire--}}
             <input wire:model="release_date" type="text" class="form-control input-sm">

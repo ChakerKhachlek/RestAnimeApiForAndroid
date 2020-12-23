@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\Anime;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -21,29 +22,44 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//returns the last 4 added animes
 Route::get('animes/latest', function () {
     return Anime::latest()->take(6)->get();
 });
 
+//returns the top 4 rated animes
 Route::get('animes/rated', function () {
     return Anime::orderBy('rating', 'desc')->take(6)->get();
 });
 
-Route::get('data', function () {
+//returns all categories with their animes
+Route::get('animes/data', function () {
     return Category::with('animes')->get();
 });
 
+//returns all categories only
 Route::get('categories', function () {
     return Category::all();
 });
 
-Route::get('animes', function () {
-    return Anime::all();
-});
-
+//returns category animes
 Route::get('category/{id}', function ($id) {
     return Category::find($id)->animes()->get();
 });
+
+//create user and return user else it returns a fake user with username = error
+Route::post('user/register', [UserController::class, 'register']);
+
+//create user and return user else it returns a fake user with username = error
+Route::post('user/register', [UserController::class, 'register']);
+
+//return true or false 
+Route::post('user/login', [UserController::class, 'login']);
+
+
+
+
+
 
 
 

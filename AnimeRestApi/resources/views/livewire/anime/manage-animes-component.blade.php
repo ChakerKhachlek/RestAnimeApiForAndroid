@@ -20,6 +20,7 @@
             <th scope="col">NAME</th>
             <th scope="col">Description</th>
             <th scope="col">Release Date</th>
+            <th scope="col">Duration</th>
             <th scope="col">RATING</th>
             <th scope="col">IMAGE URL</th>
             <th scope="col" style="width: 150px;">File URL</th>
@@ -32,6 +33,7 @@
                 <td>{{$row->name}}</td>
                 <td>{{$row->description}}</td>
                 <td>{{$row->release_date}}</td>
+                <td>{{$row->duration}}</td>
                 <td>{{$row->rating}}</td>
                 <td><img src="{{$row->image_url}}" width="50" height="50"></td>
                 <td style="max-width:300px;word-wrap: break-word;">{{$row->file_url}}</td>
