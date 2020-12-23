@@ -20,6 +20,7 @@ class CreateAnimesTable extends Migration
             $table->float("rating");
             $table->TEXT("image_url")->nullable();
             $table->TEXT("file_url")->nullable();
+            $table->TEXT("release_date")->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

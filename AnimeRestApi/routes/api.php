@@ -21,10 +21,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('animes', function () {
-    return Anime::all();
+Route::get('animes/latest', function () {
+    return Anime::latest()->take(6)->get();
+});
+
+Route::get('animes/rated', function () {
+    return Anime::orderBy('rating', 'desc')->take(6)->get();
+});
+
+Route::get('data', function () {
+    return Category::with('animes')->get();
 });
 
 Route::get('categories', function () {
     return Category::all();
 });
+
+Route::get('animes', function () {
+    return Anime::all();
+});
+
+Route::get('category/{id}', function ($id) {
+    return Category::find($id)->animes()->get();
+});
+
+
+

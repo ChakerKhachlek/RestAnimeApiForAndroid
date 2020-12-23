@@ -8,7 +8,7 @@ use App\Models\Category;
 
 class ManageAnimesComponent extends Component
 {
-    public $name,$description,$rating,$file_url,$image_url;
+    public $name,$description,$rating,$release_date,$file_url,$image_url;
     public $categories,$selectedCategory,$categoryAnimes;
     public $selectedAnime;
     public $createMode=false;
@@ -36,6 +36,7 @@ class ManageAnimesComponent extends Component
         $this->name=null;
         $this->description=null;
         $this->rating=null;
+        $this->release_date=null;
         $this->file_url=null;
         $this->image_url=null;
     }
@@ -56,6 +57,7 @@ class ManageAnimesComponent extends Component
         $this->name=$record->name;
         $this->description=$record->description;
         $this->rating=$record->rating;
+        $this->release_date=$record->release_date;
         $this->image_url=$record->image_url;
         $this->file_url=$record->file_url;
         $this->updateMode=true;
@@ -84,6 +86,7 @@ class ManageAnimesComponent extends Component
             'name' => 'required',
             'description'=>'required',
             'rating'=>'required|numeric',
+            'release_date'=>'required',
             'file_url'=>'required',
             'image_url'=>'required'
         ]);
@@ -93,6 +96,7 @@ class ManageAnimesComponent extends Component
         $selectedCategory->animes()->create([
             'name' => $this->name,
             'description' => $this->description,
+            'release_date' =>$this->release_date,
             'rating' => $this->rating,
             'image_url' => $this->image_url,
             'file_url' => $this->file_url,
@@ -107,6 +111,7 @@ class ManageAnimesComponent extends Component
         $record->update([
             'name' => $this->name,
             'description' => $this->description,
+            'release_date' =>$this->release_date,
             'rating' => $this->rating,
             'image_url' => $this->image_url,
             'file_url' => $this->file_url,
