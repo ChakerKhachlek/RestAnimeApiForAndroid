@@ -52,9 +52,67 @@ class UserController extends Controller
                 ]);
         }
 
-
-           
-        
-        
     }
+
+    public function find($id){
+        return User::findOrFail($id);
+    }
+
+
+    public function updateInfo($id,Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'username' => 'required', 
+            'email' => 'required|email', 
+            'email' => 'unique:users,email,'.$id,
+        ]);
+
+        $userError=new User([
+            'username'=>'erroremail'
+            ]);
+
+        if ($validator->fails()) { 
+            return $userError;            
+        }
+
+        $user=User::find($id);
+
+        if(!is_null($user)){
+            $user->update([
+                'username'=>$request->username,
+                'email'=>$request->email
+            ]);
+
+        }else{
+            $userError=new User([
+                'username'=>'error'
+                ]);
+            return $userError;
+        }
+       
+        return $user; 
+    }
+
+    public function updatePassword($id,Request $request){
+        $user=User::find($id);
+
+        if (Hash::check($request->password,$user->password)) {
+            return $user=new User([
+                'username'=>'samepassword'
+                ]);
+            
+        }else{
+            $newpass=Hash::make($request->password);
+            $user->update([
+                'password'=> $newpass
+            ]);
+
+            return $user=new User([
+                'username'=>'passed'
+                ]);
+        }
+
+
+    }
+
 }

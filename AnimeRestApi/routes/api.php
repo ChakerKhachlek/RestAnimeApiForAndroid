@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Models\User;
 use App\Models\Anime;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -56,6 +57,18 @@ Route::post('user/register', [UserController::class, 'register']);
 //return true or false 
 Route::post('user/login', [UserController::class, 'login']);
 
+
+//returns user
+Route::get('user/find/{id}', function ($id) {
+    return User::findOrFail($id);
+});
+
+
+//return true or false 
+Route::post('user/updateInfo/{id}', [UserController::class, 'updateInfo']);
+
+//return true or false 
+Route::post('user/updatePassword/{id}', [UserController::class, 'updatePassword']);
 
 
 
