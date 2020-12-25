@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Anime extends Model
 {
@@ -14,7 +15,7 @@ class Anime extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
-        return $this->belongsToMany(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class,'user_anime','user_id','anime_id');
     }
 }

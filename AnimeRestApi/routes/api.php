@@ -64,11 +64,39 @@ Route::get('user/find/{id}', function ($id) {
 });
 
 
-//return true or false 
+//update user info 
 Route::post('user/updateInfo/{id}', [UserController::class, 'updateInfo']);
 
-//return true or false 
+//return user password
 Route::post('user/updatePassword/{id}', [UserController::class, 'updatePassword']);
+
+
+
+//get user favourite animes
+Route::get('user/{id}/favourites', [UserController::class, 'favouriteAnimes']);
+
+
+//add user favourite anime
+Route::get('user/{userid}/addfavourite/{animeid}', [UserController::class, 'addFavouriteAnime']);
+
+//detach user favourite anime
+Route::get('user/{userid}/removefavourite/{animeid}', [UserController::class, 'removeFavouriteAnime']);
+
+
+//check if the anime is one of the user favourite
+Route::get('user/{userid}/favourite/{animeid}', function ($userid,$animeid) {
+
+   if(User::find($userid)->favouriteAnimes()->get()->contains($animeid)){
+       return new Anime([
+           'name'=>'isFavourite'
+       ]);
+   }else{
+    return new Anime([
+        'name'=>'notFavourite'
+    ]);
+   }
+
+});
 
 
 

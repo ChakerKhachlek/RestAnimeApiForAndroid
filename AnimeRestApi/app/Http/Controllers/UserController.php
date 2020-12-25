@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anime;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -115,4 +116,30 @@ class UserController extends Controller
 
     }
 
+  
+    public function favouriteAnimes($id){
+        $user=User::find($id);
+        return $user->favouriteAnimes()->get();
+       
+    }
+
+    public function addFavouriteAnime($userid,$animeid){
+        $user=User::find($userid);
+        $user->favouriteAnimes()->attach($animeid);
+
+        $anime=new Anime([
+            'name'=>'addedToFavourite'
+            ]);
+        return $anime;
+    }
+
+    public function removeFavouriteAnime($userid,$animeid){
+        $user=User::find($userid);
+        $user->favouriteAnimes()->detach($animeid);
+
+        $anime=new Anime([
+            'name'=>'removedFromFavourite'
+            ]);
+        return $anime;
+    }
 }

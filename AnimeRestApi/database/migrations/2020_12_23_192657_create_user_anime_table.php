@@ -16,9 +16,15 @@ class CreateUserAnimeTable extends Migration
         Schema::create('user_anime', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+              ->references('id')
+              ->on('users')->onDelete('cascade');
+
             $table->integer('anime_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('anime_id')->references('id')->on('animes')->onDelete('cascade');
+            $table->foreign('anime_id')
+              ->references('id')
+              ->on('animes')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
