@@ -75,7 +75,7 @@ Route::post('user/updatePassword/{id}', [UserController::class, 'updatePassword'
 //get user favourite animes
 Route::get('user/{id}/favourites', [UserController::class, 'favouriteAnimes']);
 
-
+//tested
 //add user favourite anime
 Route::get('user/{userid}/addfavourite/{animeid}', [UserController::class, 'addFavouriteAnime']);
 
