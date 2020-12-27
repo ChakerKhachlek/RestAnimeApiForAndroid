@@ -1,0 +1,6 @@
+RestAnimeApiForAndroid	git@github.com:ChakerKhachlek/RestAnimeApiForAndroid.git (fetch)
+RestAnimeApiForAndroid	git@github.com:ChakerKhachlek/RestAnimeApiForAndroid.git (push)
+heroku	https://git.heroku.com/androidonlineheavenapi.git (fetch)
+heroku	https://git.heroku.com/androidonlineheavenapi.git (push)
+origin	https://github.com/ChakerKhachlek/RestAnimeApiForAndroid (fetch)
+origin	https://github.com/ChakerKhachlek/RestAnimeApiForAndroid (push)

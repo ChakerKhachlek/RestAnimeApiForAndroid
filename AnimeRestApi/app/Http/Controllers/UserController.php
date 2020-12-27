@@ -142,4 +142,17 @@ class UserController extends Controller
             ]);
         return $anime;
     }
+
+    public function searchAnimes(Request $request){
+        $animes=Anime::where('name', 'like', '%' . $request->querry . '%')
+        
+        ->orwhere('description', 'like', '%' . $request->querry . '%')
+        ->orWhereHas('category',function($query) use($request){
+                $query->where('name','like', '%' . $request->querry . '%');
+        })
+            ->get();
+            
+            return $animes;
+
+    }
 }

@@ -98,6 +98,7 @@ Route::get('user/{userid}/favourite/{animeid}', function ($userid,$animeid) {
 
 });
 
+Route::post('/animes/search',[UserController::class, 'searchAnimes']);
 
 
 

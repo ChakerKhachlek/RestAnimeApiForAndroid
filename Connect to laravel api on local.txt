@@ -1,3 +1,4 @@
 run php artisan serve --host 0.0.0.0:8000
 then ip config to know your ip
 then add that to endpoint
+
