@@ -14,7 +14,7 @@ class CreateUserAnimeTable extends Migration
     public function up()
     {
         Schema::create('user_anime', function (Blueprint $table) {
-            $table->id();
+           $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
               ->references('id')

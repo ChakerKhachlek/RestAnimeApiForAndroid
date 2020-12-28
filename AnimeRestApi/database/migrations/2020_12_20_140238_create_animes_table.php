@@ -14,7 +14,7 @@ class CreateAnimesTable extends Migration
     public function up()
     {
         Schema::create('animes', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string("name");
             $table->TEXT("description", 255);
             $table->float("rating");
